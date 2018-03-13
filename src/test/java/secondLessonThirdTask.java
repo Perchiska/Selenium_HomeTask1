@@ -38,6 +38,12 @@ public class secondLessonThirdTask {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LOGIN_BUTTON))).click();
     }
 
+    @After
+    public void stop(){
+        driver.close();
+        driver=null;
+    }
+
 }
 
 
