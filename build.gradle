@@ -14,4 +14,5 @@ dependencies {
     testCompile 'org.testng:testng:+'
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '+'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.10.0'
+    compile 'ru.stqa.selenium:webdriver-factory:4.3'
 }
