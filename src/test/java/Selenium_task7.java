@@ -38,18 +38,18 @@ public class Selenium_task7 extends baseTest {
 
         for (int i = 1; i < rows.size(); i++) {
 
-            rows = driver.findElements(By.xpath("//div[@id='box-apps-menu-wrapper']//li/a/span[2]"));
+            rows = driver.findElements(By.xpath("//li/a/span[2]"));
             wait.until(ExpectedConditions.visibilityOf(rows.get(i - 1)));
             rows.get(i - 1).click();
 
             try {
                 subrows = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
-                        (By.xpath("//div[@id='box-apps-menu-wrapper']//li//ul//li")));
+                        (By.xpath("//li//ul//li")));
 
                 int count = subrows.size();
 
                 for (int n = 1; n < count; n++) {
-                    subrows = driver.findElements(By.xpath("//div[@id='box-apps-menu-wrapper']//li//ul//li//a/span"));
+                    subrows = driver.findElements(By.xpath("//li//ul//li//a/span"));
                     wait.until(ExpectedConditions.visibilityOf(subrows.get(n - 1)));
                     subrows.get(n - 1).click();
                 }
