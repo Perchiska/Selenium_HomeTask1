@@ -54,12 +54,8 @@ public class Selenium_task7 extends baseTest {
                     subrows.get(n - 1).click();
                 }
             } catch (org.openqa.selenium.TimeoutException ignored) {
-
             }
-
-
             Assert.assertTrue(isElementPresented(By.tagName("h1")));
-
         }
     }
 
