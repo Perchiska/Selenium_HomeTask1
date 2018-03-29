@@ -31,40 +31,57 @@ public class Selenium_task9 extends baseTest {
         ArrayList<String> country = new ArrayList<>();
         ArrayList<String> zones = new ArrayList<>();
 
+
         for (int i = 0; i < rows.size(); i++) {
+
+
             try {
                 rows = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//td[5]/a")));
                 List<WebElement> zonesList = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//td[6]")));
+
                 WebElement zone = zonesList.get(i);
                 String zoneAttribute = zone.getAttribute("textContent");
                 String contries = rows.get(i).getAttribute("textContent");
                 if (zoneAttribute.equals("0")) {
 
                     country.add(contries);
-                    System.out.println(country);
+                    System.out.println(country.get(i));
 
                 } else {
-
+                    
                     rows.get(i).click();
-                    country.add(wait.until(visibilityOfElementLocated(By.name("name"))).getAttribute("value"));
+                    country.add(wait.until(visibilityOfElementLocated(By.cssSelector("[name='name']"))).getAttribute("value"));
 
                     wait.until(presenceOfElementLocated(By.xpath("//*[@id='content']//h2")));
-                    List<WebElement> zonesOfCountry = wait.until(visibilityOfAllElementsLocatedBy
-                            (By.xpath("//table[@id='table-zones']//td[3]")));
-                    for (int n = 0; n < zonesOfCountry.size() - 1; n++) {
+                    List<WebElement> zonesOfCountry = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//table[@id='table-zones']//tr")));
+                    int count = zonesOfCountry.size() - 2;
+                    for (int n = 1; n < count; n++) {
+                        zonesOfCountry = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//table[@id='table-zones']//tr//td[3]")));
+
                         zones.add(zonesOfCountry.get(n).getAttribute("textContent"));
-                        System.out.println(zones);
-                        ArrayList<String> sortedZones = new ArrayList<String>(zones);
-                        Collections.sort(sortedZones);
-                        Assert.assertTrue(zones.equals(sortedZones));
-                        wait.until(presenceOfElementLocated(By.name("cancel"))).click();
+
+
                     }
+                    ArrayList<String> sortedZones = new ArrayList<String>(zones);
+                    Collections.sort(sortedZones);
+                    System.out.println(sortedZones);
+                    Assert.assertTrue(zones.equals(sortedZones));
+                    zones.clear();
+
+                    wait.until(visibilityOfElementLocated(By.xpath(COUNTRIES))).click();
                 }
+
+
+
             } catch (org.openqa.selenium.TimeoutException ignored) {
             }
 
-        }
 
+        }
+        ArrayList<String> sortedCountries = new ArrayList<>(country);
+        Collections.sort(sortedCountries);
+        System.out.println(sortedCountries);
+        Assert.assertTrue(country.equals(sortedCountries));
 
     }
 }
