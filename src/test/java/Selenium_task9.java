@@ -1,7 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,10 +18,11 @@ public class Selenium_task9 extends baseTest {
     public static final String PASSWORD = "//input[@name='password']";
     public static final String LOGIN_BUTTON = "//div[@class='footer']//button[@type='submit']";
     public static final String COUNTRIES = "//span[contains(text(), 'Countries')]";
+    public static final String GEO = "//span[contains(text(), 'Geo Zones')]";
 
 
     @Test
-    public void loginTest() throws InterruptedException {
+    public void countries() {
         driver.get(URL);
         wait.until(visibilityOfElementLocated(By.xpath(USERNAME))).sendKeys("admin");
         wait.until(visibilityOfElementLocated(By.xpath(PASSWORD))).sendKeys("admin");
@@ -48,7 +51,7 @@ public class Selenium_task9 extends baseTest {
                     System.out.println(country.get(i));
 
                 } else {
-                    
+
                     rows.get(i).click();
                     country.add(wait.until(visibilityOfElementLocated(By.cssSelector("[name='name']"))).getAttribute("value"));
 
@@ -84,6 +87,52 @@ public class Selenium_task9 extends baseTest {
         Assert.assertTrue(country.equals(sortedCountries));
 
     }
+
+    @Test
+    public void geoZones() {
+
+        driver.get(URL);
+        wait.until(visibilityOfElementLocated(By.xpath(USERNAME))).sendKeys("admin");
+        wait.until(visibilityOfElementLocated(By.xpath(PASSWORD))).sendKeys("admin");
+        wait.until(visibilityOfElementLocated(By.xpath(LOGIN_BUTTON))).click();
+        wait.until(visibilityOfElementLocated(By.xpath(GEO))).click();
+
+        ArrayList<String> listOfZones = new ArrayList<>();
+        List<WebElement> rows = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//tr[@class='row']")));
+
+        for(int i=0; i<rows.size(); i++){
+            rows = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//tr[@class='row']//td[5]/a")));
+            rows.get(i).click();
+
+            List<WebElement> zonesList = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//table[@id='table-zones']//td[3]")));
+
+            try{
+
+                for( int n =0; n<zonesList.size(); n++){
+                    zonesList = driver.findElements(By.xpath("//table[@id='table-zones']//td[3]//select"));
+                    Select select = new Select(zonesList.get(n));
+                    WebElement option = select.getFirstSelectedOption();
+                    String defaultItem = option.getText();
+                    System.out.println(defaultItem );
+
+                    listOfZones.add(defaultItem);
+
+                }
+                ArrayList<String> sortedZones = new ArrayList<String>(listOfZones);
+                Collections.sort(sortedZones);
+                System.out.println(sortedZones);
+                Assert.assertTrue(listOfZones.equals(sortedZones));
+                listOfZones.clear();
+                wait.until(visibilityOfElementLocated(By.xpath(GEO))).click();
+            } catch (org.openqa.selenium.TimeoutException ignored){
+
+            }
+
+
+        }
+
+    }
+
 }
 
 
