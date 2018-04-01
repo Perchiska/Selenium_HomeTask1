@@ -1,13 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -17,12 +15,14 @@ import java.util.concurrent.TimeUnit;
 public class baseTest {
     public WebDriver driver;
 public WebDriverWait wait;
+public FluentWait fluentWait;
 
     @Before
     public void  start(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
        wait = new WebDriverWait(driver, 10);
+       fluentWait = new FluentWait(driver);
 
 
     }
@@ -80,6 +80,16 @@ public WebDriverWait wait;
 
         }
         return driver;
+    }
+    public WebElement untilElementVisible(By by) {
+        return this.wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public void clearAndSetText(By by, String text) {
+        untilElementVisible(by).clear();
+        if (text != null) {
+            untilElementVisible(by).sendKeys(text);
+        }
     }
 
 
