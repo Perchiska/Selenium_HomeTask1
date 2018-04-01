@@ -67,6 +67,7 @@ public class Selenium_task11 extends baseTest {
         clearAndSetText(By.name(EMAIL), randomEmail);
         clearAndSetText(By.name(DESIRED_PASSWORD), passwordS);
         untilElementVisible(By.xpath(LOGIN_BUTTON)).click();
+        untilElementVisible(By.xpath(LOGOUT_BUTTON)).click();
 
 
 
