@@ -58,7 +58,6 @@ public class Selenium_task11 extends baseTest {
         Select selectZone = new Select(untilElementVisible(By.xpath(ZONE)));
         List<WebElement> list = selectZone.getOptions();
         int size = list.size();
-
         selectZone.selectByIndex(rand.nextInt(size));
 
 
