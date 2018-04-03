@@ -47,8 +47,8 @@ public FluentWait fluentWait;
         return driver.findElements(locator).size()>0;
     }
 
-    public WebElement visibilityOfElement(By locator){
-        WebElement element =  this.wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public WebElement visibilityOfElement(String locator){
+        WebElement element =  this.wait.until(ExpectedConditions.elementToBeClickable(By.id(locator)));
         return element;
     }
 
@@ -89,6 +89,18 @@ public FluentWait fluentWait;
         untilElementVisible(by).clear();
         if (text != null) {
             untilElementVisible(by).sendKeys(text);
+        }
+    }
+
+    public void whileElementIsPresentedClick(By by){
+        while(isElementPresented(by)){
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            element.click();
+            wait.until(ExpectedConditions.stalenessOf(element));
+           /* if(!isElementPresented(by)){
+                break;
+            }*/
+
         }
     }
 
