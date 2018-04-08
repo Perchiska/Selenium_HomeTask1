@@ -19,7 +19,7 @@ public class Selenium_task13 extends baseTest {
     private static final String CHECKOUT = "//a[contains(text(), 'Checkout »')]";
     private static final String DELETE = "//li[1]//p[4]/button[@name='remove_cart_item']";
     private static final String SHORT = "//ul[@class='shortcuts']//li[1]";
-    private static final String EMPTY = "//ul[@class='shortcuts']//li[1]";
+
 
 
     @Test
