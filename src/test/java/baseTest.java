@@ -1,11 +1,16 @@
 import com.google.common.io.Files;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -20,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 public class baseTest {
     public EventFiringWebDriver driver;
@@ -56,8 +62,12 @@ public class baseTest {
 
     @Before
     public void start() {
-        WebDriverManager.chromedriver().setup();
-        driver = new EventFiringWebDriver(new ChromeDriver());
+        ChromeDriverManager.getInstance().setup();
+        ChromeOptions options = new ChromeOptions();
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.BROWSER, Level.ALL);
+        options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        driver = new EventFiringWebDriver(new ChromeDriver(options));
         driver.register(new MyListener());
         wait = new WebDriverWait(driver, 10);
         fluentWait = new FluentWait(driver);
