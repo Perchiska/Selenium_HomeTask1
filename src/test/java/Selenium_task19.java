@@ -1,4 +1,5 @@
 import Pages.Basket;
+import Pages.GoodsPage;
 import Pages.MainPage;
 import Pages.baseTest;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class Selenium_task19 extends baseTest {
     }
     MainPage mainpage = new MainPage(driver);
     Basket basket = new Basket(driver);
+    GoodsPage goods = new GoodsPage(driver);
 
     @Test
     public void bucketTest() {
@@ -23,8 +25,8 @@ public class Selenium_task19 extends baseTest {
         for (int i = 1; i < 4; i++) {
             String number = Integer.toString(i);
             mainpage.clickOnFirstElementInMostPopular();
-            basket.addToCard(number, "Medium +$2.50");
-            basket.returnToMainPage();
+            goods.addToCard(number, "Medium +$2.50");
+            goods.returnToMainPage();
         }
 
         mainpage.clickOnCheckOutButton();

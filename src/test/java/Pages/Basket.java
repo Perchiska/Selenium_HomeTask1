@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
 
 public class Basket extends MainPage {
-    private static final String ADD_TO_CART = "add_cart_product";
+
     private static final String DELETE = "//li[1]//p[4]/button[@name='remove_cart_item']";
     private static final String SHORT = "//ul[@class='shortcuts']//li[1]";
 
@@ -16,19 +16,7 @@ public class Basket extends MainPage {
         super(driver);
     }
 
-    public void addToCard(String number, String size){
-        if (isElementPresented(By.name("options[Size]"))) {
-            Select select = new Select(untilElementVisible(By.name("options[Size]")));
-            select.selectByVisibleText(size);
-            untilElementVisible(By.name(ADD_TO_CART)).click();
-            wait.until(attributeContains(By.xpath("//span[@class='quantity']"),
-                    "textContent", number));
-        } else {
-            untilElementVisible(By.name(ADD_TO_CART)).click();
-            wait.until(attributeContains(By.xpath("//span[@class='quantity']"),
-                    "textContent", number));
-        }
-    }
+
 
     public MainPage returnToMainPage() {
         untilElementVisible(By.cssSelector(".general-0")).click();
