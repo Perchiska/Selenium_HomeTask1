@@ -1,4 +1,4 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+import Pages.baseTest;
 
 import org.junit.Assert;
 import org.junit.Test;

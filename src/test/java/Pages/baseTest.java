@@ -1,3 +1,5 @@
+package Pages;
+
 import com.google.common.io.Files;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -27,10 +29,16 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+
 public class baseTest {
     public EventFiringWebDriver driver;
     public WebDriverWait wait;
     public FluentWait fluentWait;
+
+    public baseTest(WebDriver driver) {
+        this.driver = (EventFiringWebDriver) driver;
+    }
 
 
     public static class MyListener extends AbstractWebDriverEventListener {
@@ -164,6 +172,8 @@ public class baseTest {
 
         }
     }
+
+
 
 
 }

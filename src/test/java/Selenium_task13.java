@@ -1,14 +1,8 @@
-import org.junit.Assert;
+import Pages.baseTest;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -20,6 +14,9 @@ public class Selenium_task13 extends baseTest {
     private static final String DELETE = "//li[1]//p[4]/button[@name='remove_cart_item']";
     private static final String SHORT = "//ul[@class='shortcuts']//li[1]";
 
+    public Selenium_task13(WebDriver driver) {
+        super(driver);
+    }
 
 
     @Test

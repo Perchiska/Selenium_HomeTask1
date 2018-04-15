@@ -1,3 +1,4 @@
+import Pages.baseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -5,9 +6,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntry;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
@@ -60,6 +59,8 @@ public class Selenium_task17 extends baseTest {
 
 
     }
+
+
 
 }
 

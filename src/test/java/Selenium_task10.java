@@ -1,3 +1,4 @@
+import Pages.baseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -6,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,7 +14,6 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
@@ -25,12 +23,41 @@ public class Selenium_task10 extends baseTest {
     public static final String URL = "http://localhost/litecart/en/";
     WebDriver driver;
     WebDriverWait wait;
+    String propertyName;
+    String fontWeightMain;
+    String fontWeightPage;
 
     @Test
     public void ChromerightPage() {
 
-            driver = new ChromeDriver();
+
+        List<WebDriver> drivers = new ArrayList<>();
+        drivers.add(new ChromeDriver());
+        drivers.add(new FirefoxDriver());
+        drivers.add(new EdgeDriver());
+
+        for (WebDriver browser: drivers) {
+
+            driver =browser;
             wait = new WebDriverWait(driver, 15);
+            if(browser == new ChromeDriver()){
+                propertyName = "text-decoration-line";
+                fontWeightMain = "700";
+                fontWeightPage="700";
+
+            } else if (browser == new FirefoxDriver()) {
+                propertyName = "text-decoration-line";
+                fontWeightMain = "900";
+                fontWeightPage="700";
+
+            }else if (browser == new EdgeDriver()) {
+                propertyName = "text-decoration";
+                fontWeightMain = "700";
+                fontWeightPage="700";
+
+            }
+
+
             driver.get(URL);
 
             List<WebElement> rows = wait.until(visibilityOfAllElementsLocatedBy(By.xpath("//div[@id='box-campaigns']//li")));
@@ -58,12 +85,12 @@ public class Selenium_task10 extends baseTest {
                 Assert.assertTrue(checkRedColor(newCampaignMainW), "Not red");
 
                 System.out.println(newCampaignMainW.getCssValue("font-weight"));
-                System.out.println(priceRegularMainW.getCssValue("text-decoration-line"));
+                System.out.println(priceRegularMainW.getCssValue(propertyName));
 
-                Assert.assertTrue((priceRegularMainW.getCssValue("text-decoration-line")
+                Assert.assertTrue((priceRegularMainW.getCssValue(propertyName)
                         .equals("line-through")), "Wrong line stile");
                 Assert.assertTrue((newCampaignMainW.getCssValue("font-weight")
-                        .equals("700")), "Wrong font weight");
+                        .equals(fontWeightMain)), "Wrong font weight");
 
                 rows.get(i).click();
 
@@ -84,10 +111,10 @@ public class Selenium_task10 extends baseTest {
                 Assert.assertTrue(newCampaignMain.equals(campaignPriceS), "Invalid new price");
                 Assert.assertTrue(checkGrayColor(regularPrice), "Not gray");
                 Assert.assertTrue(checkRedColor(campaignPrice), "Not red");
-                Assert.assertTrue((regularPrice.getCssValue("text-decoration-line")
+                Assert.assertTrue((regularPrice.getCssValue(propertyName)
                         .equals("line-through")), "Wrong line stile");
                 Assert.assertTrue((campaignPrice.getCssValue("font-weight")
-                        .equals("700")), "Wrong font weight");
+                        .equals(fontWeightPage)), "Wrong font weight");
                 Assert.assertTrue((cmpPr.height > regPr.height & cmpPr.width > regPr.width), "Wrong size");
 
 
@@ -95,9 +122,7 @@ public class Selenium_task10 extends baseTest {
                 System.out.println("everything is ok");
             }
 
-
-
-
+        }
     }
 
     @Test

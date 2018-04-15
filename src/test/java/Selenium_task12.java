@@ -1,13 +1,12 @@
+import Pages.baseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Random;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
@@ -41,6 +40,10 @@ public class Selenium_task12 extends baseTest {
     private static final String DOWNLOAD_FILE = "new_images[]";
     private final String filePath = "src/resourses" + this.getClass().getPackage().getName().replaceAll(".", "/") + "/zlee-net_01.jpg";
     private static final String SAVE_BUTTON = "[name='save']";
+
+    public Selenium_task12(WebDriver driver) {
+        super(driver);
+    }
 
 
     @Test

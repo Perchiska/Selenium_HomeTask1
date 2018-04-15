@@ -1,4 +1,4 @@
-import org.apache.commons.lang3.RandomUtils;
+import Pages.baseTest;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,9 +6,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.Random;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class Selenium_task11 extends baseTest {
     public static final String URL = "http://localhost/litecart/";
