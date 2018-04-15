@@ -1,7 +1,8 @@
-import Pages.baseTest;
+import Pages.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-public class Selenium_task9 extends baseTest {
+public class Selenium_task9 extends Helper {
 
     public static final String URL = "http://localhost/litecart/admin/";
     public static final String USERNAME = "//input[@name='username']";
@@ -19,6 +20,10 @@ public class Selenium_task9 extends baseTest {
     public static final String LOGIN_BUTTON = "//div[@class='footer']//button[@type='submit']";
     public static final String COUNTRIES = "//span[contains(text(), 'Countries')]";
     public static final String GEO = "//span[contains(text(), 'Geo Zones')]";
+
+    public Selenium_task9(WebDriver driver) {
+        super(driver);
+    }
 
 
     @Test

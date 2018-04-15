@@ -1,8 +1,9 @@
-import Pages.baseTest;
+import Pages.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntry;
 
@@ -12,7 +13,7 @@ import java.util.logging.Level;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class Selenium_task17 extends baseTest {
+public class Selenium_task17 extends Helper {
     public static final String URL = "http://localhost/litecart/admin/";
     public static final String USERNAME = "//input[@name='username']";
     public static final String PASSWORD = "//input[@name='password']";
@@ -21,6 +22,10 @@ public class Selenium_task17 extends baseTest {
     public static final String SUB_CATALOG = "#doc-catalog";
     public static final String DIRECTORY = "//a[contains(text(), 'Rubber Ducks')]";
     public static final String SUB_DIRECTORY = "//tr[4]/td[3]/a";
+
+    public Selenium_task17(WebDriver driver) {
+        super(driver);
+    }
 
 
     @Test

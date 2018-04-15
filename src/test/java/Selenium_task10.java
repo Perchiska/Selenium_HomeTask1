@@ -1,4 +1,4 @@
-import Pages.baseTest;
+import Pages.Helper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -18,7 +18,7 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class Selenium_task10 extends baseTest {
+public class Selenium_task10 extends Helper {
 
     public static final String URL = "http://localhost/litecart/en/";
     WebDriver driver;
@@ -26,6 +26,10 @@ public class Selenium_task10 extends baseTest {
     String propertyName;
     String fontWeightMain;
     String fontWeightPage;
+
+    public Selenium_task10(WebDriver driver) {
+        super(driver);
+    }
 
     @Test
     public void ChromerightPage() {

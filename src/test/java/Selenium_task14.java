@@ -1,7 +1,8 @@
-import Pages.baseTest;
+import Pages.Helper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -10,13 +11,17 @@ import java.util.Set;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-public class Selenium_task14 extends baseTest {
+public class Selenium_task14 extends Helper {
     public static final String URL = "http://localhost/litecart/admin/";
     public static final String USERNAME = "//input[@name='username']";
     public static final String PASSWORD = "//input[@name='password']";
     public static final String LOGIN_BUTTON = "//div[@class='footer']//button[@type='submit']";
     public static final String COUNTRIES = "//span[contains(text(), 'Countries')]";
     public static final String AFG = "//a[contains(text(), 'Afghanistan')]";
+
+    public Selenium_task14(WebDriver driver) {
+        super(driver);
+    }
 
 
     @Test

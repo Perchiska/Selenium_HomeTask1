@@ -1,4 +1,4 @@
-import Pages.baseTest;
+import Pages.Helper;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,12 +8,16 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllEle
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class Selenium_task7 extends baseTest {
+public class Selenium_task7 extends Helper {
     public static final String URL = "http://localhost/litecart/admin/";
     public static final String USERNAME = "//input[@name='username']";
     public static final String PASSWORD = "//input[@name='password']";
     public static final String LOGIN_BUTTON = "//div[@class='footer']//button[@type='submit']";
     public static final String TABLE = "//div[@id='box-apps-menu-wrapper']";
+
+    public Selenium_task7(WebDriver driver) {
+        super(driver);
+    }
 
     @Test
     public void loginTest() throws InterruptedException {

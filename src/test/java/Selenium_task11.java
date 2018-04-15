@@ -1,13 +1,14 @@
-import Pages.baseTest;
+import Pages.Helper;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.Random;
 
-public class Selenium_task11 extends baseTest {
+public class Selenium_task11 extends Helper {
     public static final String URL = "http://localhost/litecart/";
     public static final String NEW_CUSTOMER = "//a[contains(text(), 'New customers click here')]";
     public static final String FIRST_NAME = "firstname";
@@ -24,6 +25,10 @@ public class Selenium_task11 extends baseTest {
     public static final String LOGOUT_BUTTON = "//a[contains(text(), 'Logout')]";
     public static final String LOGIN_BUTTON = "//button[contains(text(), 'Login')]";
     public static final String CITY= "city";
+
+    public Selenium_task11(WebDriver driver) {
+        super(driver);
+    }
 
 
     @Test
